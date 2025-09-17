@@ -1,0 +1,4 @@
+package lk.ijse.drivingschool.entity;
+
+public class SuperEntity {
+}
