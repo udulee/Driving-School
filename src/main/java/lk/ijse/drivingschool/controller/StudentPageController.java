@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,18 +13,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import lk.ijse.drivingschool.BO.custom.StudentBO;
-import lk.ijse.drivingschool.BO.custom.impl.StudentBOImpl;
+import lk.ijse.drivingschool.bo.custom.StudentBO;
+import lk.ijse.drivingschool.bo.BOFactory;
+import lk.ijse.drivingschool.dto.StudentDTO;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class StudentPageController {
+public class StudentPageController implements Initializable {
 
-    private final StudentBO studentBO = new StudentBOImpl();
+
     public Button btnBackToDashboard;
 
     @FXML
@@ -41,11 +44,24 @@ public class StudentPageController {
     @FXML
     private TextField txtStudentId, txtName, txtEmail, txtPhone, txtAddress, txtRegisterFee;
 
-    @FXML
-    public void initialize() throws SQLException {
-        setCellValueFactory();
+    StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
 
-        loadTable();
+
+    @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+ try {
+     initializeTable();
+     setCellValueFactory();
+     loadTable();
+
+ }catch (Exception e){
+     e.printStackTrace();
+     new Alert(Alert.AlertType.ERROR, "Error").show();
+ }
+
+    }
+
+    private void initializeTable() {
     }
 
     private void setCellValueFactory() {
@@ -59,7 +75,7 @@ public class StudentPageController {
     }
 
 
-    private void loadTable() throws SQLException {
+    private void loadTable() {
         ArrayList<StudentDTO> studentList = (ArrayList<StudentDTO>) studentBO.getAllStudent();
         ObservableList<StudentDTO> data = FXCollections.observableArrayList(studentList);
         System.out.println(data);
@@ -67,7 +83,7 @@ public class StudentPageController {
     }
 
     @FXML
-    void handleSaveStudent(ActionEvent event) throws SQLException {
+    void handleSaveStudent(ActionEvent event) throws Exception {
         System.out.println("sdfghj");
         try {
             StudentDTO student = new StudentDTO(
@@ -77,11 +93,8 @@ public class StudentPageController {
                     txtAddress.getText(),
                     txtRegisterFee.getText(),
                     dpRegistrationDate.getValue().toString()
-
-
             );
-
-            if (studentBO.save(student)) {
+            if (studentBO.saveStudent(student)) {
                 loadTable();
 //                setNextId();
                 new Alert(Alert.AlertType.INFORMATION, "Saved Successfully!").show();
@@ -94,7 +107,7 @@ public class StudentPageController {
     }
 
     @FXML
-    void handleUpdateStudent(ActionEvent event) throws SQLException {
+    void handleUpdateStudent(ActionEvent event) throws Exception {
         try {
             StudentDTO student = new StudentDTO(
                     Long.parseLong(txtStudentId.getText()),
@@ -106,7 +119,7 @@ public class StudentPageController {
                     dpRegistrationDate.getValue().toString()
             );
 
-            if (studentBO.update(student)) {
+            if (studentBO.updateStudent(student)) {
                 loadTable();
                 new Alert(Alert.AlertType.INFORMATION, "Updated Successfully!").show();
             } else {
@@ -130,7 +143,7 @@ public class StudentPageController {
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
             try {
-                if (studentBO.delete(id)) {
+                if (studentBO.deleteStudent(id)) {
                     loadTable();
                     new Alert(Alert.AlertType.INFORMATION, "Deleted Successfully!").show();
 
@@ -139,7 +152,7 @@ public class StudentPageController {
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Deleting Failed!").show();
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -156,19 +169,7 @@ public class StudentPageController {
         dpRegistrationDate.setValue(null);
     }
 
-    @FXML
-    void tableClickOnAction(MouseEvent event) {
-        StudentDTO selected = tblStudent.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            txtStudentId.setText(String.valueOf(selected.getStudentId()));
-            txtName.setText(selected.getName());
-            txtEmail.setText(selected.getEmail());
-            txtPhone.setText(selected.getPhone());
-            txtAddress.setText(selected.getAddress());
-            txtRegisterFee.setText(selected.getRegisterFee());
-            dpRegistrationDate.setValue(LocalDate.parse(selected.getRegistrationDate()));
-        }
-    }
+
 
     @FXML
     private void handleBackToDashboard(ActionEvent event) throws IOException {
@@ -178,5 +179,20 @@ public class StudentPageController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+
+
+    public void tableOnClick(MouseEvent mouseEvent) {
+        StudentDTO selected = tblStudent.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            txtStudentId.setText(String.valueOf(selected.getStudentID()));
+            txtName.setText(selected.getName());
+            txtEmail.setText(selected.getStudentEmail());
+            txtPhone.setText(selected.getStudentPhone());
+            txtAddress.setText(selected.getStudentAddress());
+            txtRegisterFee.setText(selected.getRegisterDate());
+            dpRegistrationDate.setValue(LocalDate.parse(selected.getRegisterDate()));
+        }
     }
 }
