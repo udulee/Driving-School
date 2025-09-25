@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -27,7 +21,7 @@
     </Rectangle>
 
     <!-- Main Container -->
-    <VBox alignment="CENTER" layoutX="182.0" layoutY="14.0" prefHeight="500.0" prefWidth="600.0" spacing="20" style="-fx-padding: 40;">
+    <VBox alignment="CENTER" layoutX="200.0" layoutY="135.0" prefHeight="500.0" prefWidth="600.0" spacing="20" style="-fx-padding: 40;">
 
         <!-- Logo Section -->
         <VBox alignment="CENTER" spacing="10">
@@ -56,20 +50,13 @@
              <VBox spacing="8">
                  <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Password:" />
                  <HBox alignment="CENTER_LEFT" spacing="0">
-                     <PasswordField fx:id="txtPassword" prefHeight="40.0" prefWidth="350.0" promptText="Enter your password" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 8 0 0 8; -fx-background-radius: 8 0 0 8; -fx-font-size: 14px; -fx-padding: 10;" />
-                     <TextField fx:id="txtPasswordVisible" prefHeight="40.0" prefWidth="350.0" promptText="Enter your password" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 8 0 0 8; -fx-background-radius: 8 0 0 8; -fx-font-size: 14px; -fx-padding: 10;" visible="false" />
-                     <Button fx:id="btnShowPassword" onAction="#handleShowPassword" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #e9ecef; -fx-border-color: #dee2e6; -fx-border-radius: 0 8 8 0; -fx-background-radius: 0 8 8 0;" text="👁">
-                         <font>
-                             <Font size="14.0" />
-                         </font>
-                     </Button>
+                     <PasswordField fx:id="txtPassword" promptText="Enter your password" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 8 0 0 8; -fx-background-radius: 8 0 0 8; -fx-font-size: 14px; -fx-padding: 10;" HBox.hgrow="ALWAYS" />
                  </HBox>
              </VBox>
-              <CheckBox fx:id="chkRememberMe" style="-fx-text-fill: #666666;" text="Remember Me" />
               <Label fx:id="lblForgotPassword" onMouseClicked="#handleForgotPassword" style="-fx-text-fill: #9112BC; -fx-cursor: hand; -fx-underline: true;" text="Forgot Password?" />
 
                   <!-- Login Button -->
-            <Button fx:id="btnLogin" onAction="#handleLogin" prefHeight="37.0" prefWidth="263.0" style="-fx-background-color: linear-gradient(135deg, #9112BC 0%, #5D2F77 100%); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 25; -fx-font-size: 16px;" text="LOGIN">
+            <Button fx:id="btnLogin" onAction="#handleLogin" prefHeight="37.0" prefWidth="263.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 25; -fx-font-size: 16px;" text="LOGIN">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
@@ -77,83 +64,8 @@
                     <DropShadow blurType="GAUSSIAN" color="#9112BC40" height="10.0" radius="5.0" width="10.0" />
                 </effect>
             </Button>
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../images/driving-school-logo.png" />
-                </image>
-            </ImageView>
-   
-            <!-- Role Selection -->
-            <HBox alignment="CENTER" spacing="20" style="-fx-padding: 10 0 0 0;">
-      
-                 <!-- Footer -->
-              <VBox alignment="CENTER" spacing="5" style="-fx-padding: 20 0 0 0;">
-                  <Label fx:id="lblErrorMessage" style="-fx-text-fill: #dc3545; -fx-font-weight: bold;" text="" visible="false" />
-              </VBox>
-                <Label style="-fx-font-size: 14px; -fx-text-fill: #666666;" text="Login as:" />
-                <Button fx:id="btnAdminLogin" onAction="#handleAdminLogin" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #6A4C93; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-size: 12px;" text="Admin" />
-                <Button fx:id="btnReceptionistLogin" onAction="#handleReceptionistLogin" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8A2BE2; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-size: 12px;" text="Receptionist" />
-            </HBox>
         </VBox>
 
-        <!-- Login Form -->
-        <VBox alignment="CENTER" spacing="25" style="-fx-padding: 20 40 20 40;">
-
-            <!-- Input Fields -->
-            <GridPane alignment="CENTER" hgap="15" prefWidth="400.0" vgap="20">
-                <columnConstraints>
-                    <ColumnConstraints percentWidth="100" />
-                </columnConstraints>
-
-                <!-- Remember Me & Forgot Password -->
-                <HBox alignment="CENTER" spacing="60" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-
-                <rowConstraints>
-                    <RowConstraints />
-                    <RowConstraints />
-                    <RowConstraints />
-                </rowConstraints>
-            </GridPane>
-
-        </VBox>
-
-    </VBox>
-
-    <!-- Side Decoration -->
-    <VBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="150.0" prefHeight="300.0" prefWidth="120.0" spacing="15">
-        <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/steering-wheel.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/car-icon.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/license-icon.png" />
-            </image>
-        </ImageView>
-    </VBox>
-
-    <VBox alignment="CENTER_RIGHT" layoutX="830.0" layoutY="150.0" prefHeight="300.0" prefWidth="120.0" spacing="15">
-        <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/road-sign.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/traffic-light.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/instructor-icon.png" />
-            </image>
-        </ImageView>
     </VBox>
 
 </AnchorPane>

@@ -104,14 +104,10 @@
             <Button fx:id="btnUpdate" onAction="#handleUpdateStudent" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #5D2F77; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 15;" text="Update" />
 
             <Button onAction="#handleDeleteStudent" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #5D2F77; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 15;" text="Delete" />
-
-            <Button onAction="#handleSearchStudent" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #6A4C93; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 15;" text="Search" />
-
-            <Button onAction="#handleViewProgress" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #8A2BE2; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 15;" text="View Progress" />
         </HBox>
 
         <!-- Table -->
-        <TableView fx:id="tblStudent" prefHeight="160.0" prefWidth="930.0" style="-fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 8;" VBox.vgrow="ALWAYS">
+        <TableView fx:id="tblStudent" onMouseClicked="#tableOnClick" prefHeight="160.0" prefWidth="930.0" style="-fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 8;" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="colStudentId" prefWidth="80" text="Student ID" />
                 <TableColumn fx:id="colFirstName" prefWidth="100" text="Name" />
