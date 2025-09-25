@@ -13,6 +13,7 @@ public class Lesson {
 
     @Id
     @Column(name = "lesson_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String lessonId;
 
     @Column(name = "lesson_date", nullable = false)
