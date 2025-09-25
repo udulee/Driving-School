@@ -1,4 +1,4 @@
-package lk.ijse.drivingschool.model;
+package lk.ijse.drivingschool.dto;
 
 import lombok.*;
 
@@ -28,11 +28,5 @@ public class InstructorDTO {
         this.dateOfBirth = dateOfBirth;
         this.specialization = specialization;
         this.experienceYears = experienceYears;
-    }
-    public String getFullName() {
-        return firstName + " " + lastName;
-    }
-    public String getExperienceDescription() {
-        return experienceYears + " year" + (experienceYears != 1 ? "s" : "") + " experience";
     }
 }

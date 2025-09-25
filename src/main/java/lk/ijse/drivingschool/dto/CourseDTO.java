@@ -1,4 +1,4 @@
-package lk.ijse.drivingschool.model;
+package lk.ijse.drivingschool.dto;
 
 import lombok.*;
 
@@ -21,8 +21,5 @@ public class CourseDTO {
         this.fee = fee;
         this.status = status;
         this.description = description;
-    }
-    public String getFormattedFee() {
-        return String.format("%.2f LKR", fee);
     }
 }

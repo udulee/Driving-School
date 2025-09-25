@@ -1,4 +1,4 @@
-package lk.ijse.drivingschool.model;
+package lk.ijse.drivingschool.dto;
 
 import lombok.*;
 

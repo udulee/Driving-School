@@ -1,4 +1,4 @@
-package lk.ijse.drivingschool.model;
+package lk.ijse.drivingschool.dto;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class LessonDTO {
+public class  LessonDTO {
     private String lessonId;
     private String date;
     private String time;
