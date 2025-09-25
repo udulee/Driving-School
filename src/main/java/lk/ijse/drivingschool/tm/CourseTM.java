@@ -11,7 +11,7 @@ public class CourseTM {
     private String courseId;
     private String courseName;
     private String duration;
-    private double fee;
+    private double free;
     private String status;
     private String description;
 
